@@ -51,14 +51,10 @@ public class thirdpersoncameracontrol : MonoBehaviour
         return angle > desiredAngle + bufferZone; 
     }
 
-
-
     private bool angleIsTooSmall()
     {
         float angle = adjustAngle180(transform.localRotation.eulerAngles.y);
-        return angle < desiredAngle + bufferZone;
-
-        
+        return angle < desiredAngle - bufferZone;
     }
 
     float adjustAngle180(float angle)

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class CharacterMovement : MonoBehaviour
 {
     public float run = 5, strafe = 5, jump = 15, sensitivity = 150, force = 10;
-    Rigidbody rb;
+    Rigidbody rigidbody;
     Animator animator;
     bool grounded;
 
@@ -26,14 +26,14 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
         animator.SetBool("isWalking", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.y < 0)
+        if (rigidbody.velocity.y < 0)
         {
             animator.SetBool("falling", true);
         }
@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
-            rb.AddForce(Vector3.up * force);
+            rigidbody.AddForce(Vector3.up * force);
             grounded = false;
             animator.SetBool("jumpUp", true);
             animator.SetBool("onGround", false);
